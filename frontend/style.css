@@ -1,0 +1,363 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #030712;
+    color: #e2e8f0;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Futuristic Circuit Grid Background Effect */
+.cyber-grid-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -1;
+}
+
+.container {
+    width: 95%;
+    max-width: 1350px;
+    margin: 30px auto;
+    padding-bottom: 50px;
+}
+
+/* Header Styling - Exact Neon Glow look */
+header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 38px;
+    font-weight: 900;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #38bdf8, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+    margin-bottom: 10px;
+    letter-spacing: 1.5px;
+}
+
+header p {
+    color: #94a3b8;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Search Box - Glassmorphism with Neon Border */
+.search-box {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    background: rgba(15, 23, 42, 0.8);
+    padding: 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+.input-wrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 18px;
+    color: #a855f7;
+    font-size: 18px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 15px 15px 15px 52px;
+    background: #020617;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    font-size: 16px;
+    color: white;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+}
+
+.search-box button {
+    padding: 0 35px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #3b82f6, #9333ea);
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.4);
+    transition: all 0.3s ease;
+}
+
+.search-box button:hover {
+    opacity: 0.95;
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+    transform: translateY(-2px);
+}
+
+/* Error Message */
+#errorMessage {
+    color: #f43f5e;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Layout Grids */
+.results {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 25px;
+}
+
+.bottom-grid {
+    grid-template-columns: 1fr 1fr;
+}
+
+.right-panels {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Cyber Cards Styling */
+.cyber-card, .history, .recommendation {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+.cyber-card h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 0.5px;
+}
+
+.cyber-card h2 i {
+    color: #38bdf8;
+}
+
+/* Tables */
+.table-responsive {
+    overflow-x: auto;
+    max-height: 380px;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 13px 15px;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+    font-size: 14px;
+}
+
+th {
+    background: rgba(2, 6, 23, 0.8);
+    color: #38bdf8;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+td {
+    color: #cbd5e1;
+}
+
+tr:hover td {
+    background: rgba(59, 130, 246, 0.08);
+}
+
+/* Sentiment Cards Row */
+.sentiment-container {
+    display: flex;
+    gap: 15px;
+}
+
+.card {
+    flex: 1;
+    padding: 20px 15px;
+    text-align: center;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.card h3 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card p {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.positive {
+    background: rgba(16, 185, 129, 0.12);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: #34d399;
+}
+
+.neutral {
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.3);
+    color: #fbbf24;
+}
+
+.negative {
+    background: rgba(244, 63, 94, 0.12);
+    border-color: rgba(244, 63, 94, 0.3);
+    color: #fb7185;
+}
+
+/* Recommendation Box */
+.recommendation {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(88, 28, 135, 0.3));
+    border-color: rgba(168, 85, 247, 0.4);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.rec-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(168, 85, 247, 0.2);
+    color: #e879f9;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#recommendedKeyword {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    margin: 5px 0;
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+
+#recommendationScore {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+/* Chart Container */
+.chart-container {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+    .dashboard-grid, .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        margin: 15px auto;
+    }
+    .search-box {
+        flex-direction: column;
+    }
+    .sentiment-container {
+        flex-direction: column;
+    }
+    header h1 {
+        font-size: 26px;
+    }
+}
+
+/* ==========================================
+   SENTIMENT SOURCE
+========================================== */
+
+.sentiment-source {
+    text-align: center;
+    margin-top: -8px;
+    margin-bottom: 18px;
+    font-size: 12px;
+    color: #94a3b8;
+    font-style: italic;
+    letter-spacing: 0.3px;
+}

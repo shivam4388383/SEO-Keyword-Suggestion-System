@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        SEO Keyword Suggestion System
+    </title>
+
+
+    <!-- Google Fonts -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- FontAwesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    >
+
+
+    <!-- Main CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- Background -->
+
+    <div class="cyber-grid-bg"></div>
+
+
+    <div class="container">
+
+
+        <!-- ======================================
+             HEADER
+        ======================================= -->
+
+        <header>
+
+            <h1>
+                SEO KEYWORD SUGGESTION SYSTEM
+            </h1>
+
+            <p>
+                A Web-Based System for Keyword Analysis &
+                Social Media Sentiment Analysis
+            </p>
+
+        </header>
+
+
+        <!-- ======================================
+             SEARCH
+        ======================================= -->
+
+        <section class="search-box">
+
+            <div class="input-wrapper">
+
+                <i class="fa-solid fa-terminal"></i>
+
+                <input
+                    type="text"
+                    id="keywordInput"
+                    placeholder="Enter a keyword e.g. cyber security"
+                >
+
+            </div>
+
+
+            <button
+                onclick="analyzeKeyword()"
+            >
+
+                <i class="fa-solid fa-bolt"></i>
+
+                ANALYZE
+
+            </button>
+
+        </section>
+
+
+        <!-- ======================================
+             ERROR
+        ======================================= -->
+
+        <p id="errorMessage"></p>
+
+
+        <!-- ======================================
+             RESULTS
+        ======================================= -->
+
+        <section
+            id="results"
+            class="results hidden"
+        >
+
+
+            <!-- ==================================
+                 TOP GRID
+            =================================== -->
+
+            <div class="dashboard-grid">
+
+
+                <!-- ==============================
+                     KEYWORD SUGGESTIONS
+                =============================== -->
+
+                <div class="cyber-card">
+
+                    <h2>
+
+                        <i
+                            class="fa-solid fa-list-check"
+                        ></i>
+
+                        Keyword Suggestions
+
+                    </h2>
+
+
+                    <div class="table-responsive">
+
+                        <table>
+
+                        <thead>
+                           <tr>
+                                 <th>
+                                 Keyword
+                                 </th>
+
+                                  <th>
+                                Word Count
+        </th>
+
+        <th>
+            Semantic Score
+        </th>
+
+        <th>
+            Estimated Score
+        </th>
+    </tr>
+</thead>
+
+
+                            <tbody
+                                id="keywordTable"
+                            ></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==============================
+                     RIGHT PANELS
+                =============================== -->
+
+                <div class="right-panels">
+
+
+                    <!-- ==========================
+                         RECOMMENDATION
+                    =========================== -->
+
+                    <div
+                        class="cyber-card recommendation"
+                    >
+
+                        <div class="rec-badge">
+
+                            <i
+                                class="fa-solid fa-star"
+                            ></i>
+
+                            AI Recommendation
+
+                        </div>
+
+
+                        <p
+                            id="recommendedKeyword"
+                        >
+                            No recommendation available
+                        </p>
+
+
+                        <p
+                            id="recommendationScore"
+                        ></p>
+
+                    </div>
+
+
+                    <!-- ==========================
+                         SENTIMENT CARDS
+                    =========================== -->
+
+                    <div
+                        class="sentiment-container"
+                    >
+
+
+                        <div class="card positive">
+
+                            <h3>
+                                Positive
+                            </h3>
+
+                            <p id="positive">
+                                0%
+                            </p>
+
+                        </div>
+
+
+                        <div class="card neutral">
+
+                            <h3>
+                                Neutral
+                            </h3>
+
+                            <p id="neutral">
+                                0%
+                            </p>
+
+                        </div>
+
+
+                        <div class="card negative">
+
+                            <h3>
+                                Negative
+                            </h3>
+
+                            <p id="negative">
+                                0%
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ==================================
+                 BOTTOM GRID
+            =================================== -->
+
+            <div
+                class="dashboard-grid bottom-grid"
+            >
+
+
+                <!-- ==============================
+                     SENTIMENT ANALYSIS
+                =============================== -->
+
+                <div class="cyber-card">
+
+                    <h2>
+
+                        <i
+                            class="fa-solid fa-chart-pie"
+                        ></i>
+
+                        Sentiment Analysis
+
+                    </h2>
+
+
+                    <!-- NEW SOURCE INFORMATION -->
+
+                    <p
+                        id="sentimentSource"
+                        class="sentiment-source"
+                    ></p>
+
+
+                    <div
+                        class="chart-container"
+                    >
+
+                        <canvas
+                            id="sentimentChart"
+                        ></canvas>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==============================
+                     SEARCH HISTORY
+                =============================== -->
+
+                <div
+                    class="cyber-card history"
+                >
+
+                    <h2>
+
+                        <i
+                            class="fa-solid fa-clock-rotate-left"
+                        ></i>
+
+                        Recent Search History
+
+                    </h2>
+
+
+                    <div
+                        class="table-responsive"
+                    >
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Keyword
+                                    </th>
+
+                                    <th>
+                                        Score
+                                    </th>
+
+                                    <th>
+                                        Date & Time
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody
+                                id="historyTable"
+                            ></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+
+    <!-- ======================================
+         CHART.JS
+    ======================================= -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js"
+    ></script>
+
+
+    <!-- ======================================
+         MAIN JAVASCRIPT
+    ======================================= -->
+
+    <script
+        src="script.js"
+    ></script>
+
+
+</body>
+
+</html>
